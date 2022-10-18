@@ -17,3 +17,17 @@ model Video {
   createdAt   DateTime @default(now())
   picture     String?
 }
+
+model User {
+  id    Int    @id @default(autoincrement())
+  username    String @unique
+  password    String
+  email       String @unique
+  role        Role @relation(fields: [id], references: [roleId])
+}
+
+model Role {
+  roleId      Int  @id @default(autoincrement())
+  role     String @unique
+  users    User []
+}
